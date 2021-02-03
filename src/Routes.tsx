@@ -11,6 +11,11 @@ const Routes: React.FC = () => {
         <Route path="/" exact component={ Home } />
         <Route path="/cadastro" exact component={ Register } />
         <Route path="/consulta" exact component={ Query } />
+
+        { /* GitHub Pages */ }
+        <Route path="/front_querodelivery" exact component={ Home } />
+        <Route path="/front_querodelivery/cadastro" exact component={ Register } />
+        <Route path="/front_querodelivery/consulta" exact component={ Query } />
       </Switch>
     </BrowserRouter>
   );
