@@ -46,7 +46,6 @@ const Query: React.FC = () => {
   
   async function handleSubmit(e: any) {
     e.preventDefault();
-    console.log(API_URL + `/${cpf.value}`);
 
     if (cpf.validate()) {
       const { json } = await request(API_URL + `/register/${cpf.value}`, {
