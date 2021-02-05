@@ -6,7 +6,7 @@ export const Container = styled.div`
   }
 `;
 
-export const ContentWrapper = styled.div`
+export const ContentWrapper = styled.main`
   h1 {
     font-size: 2.5rem;
     line-height: 48px;

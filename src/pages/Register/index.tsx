@@ -109,98 +109,100 @@ const Register: React.FC = () => {
       <Header />
       <Head title="Cadastro |" content="Gostaria de entregar amor conosco? Preencha o formulário e faça o seu cadastro para se tornar um entregador do roxinho." />
 
-      <Message className="top_animation">
-        <h1>Quero entregar amor</h1>
-        <p>Preencha as informações e entraremos em contato em até 24 horas!  💜</p>
-      </Message>
+      <main>
+        <Message className="top_animation">
+          <h1>Quero entregar amor</h1>
+          <p>Preencha as informações e entraremos em contato em até 24 horas!  💜</p>
+        </Message>
 
-      <FormWrapper>
-        <form onSubmit={handleSubmit}>
-          <Input
-            type="text"
-            id="name"
-            label="*Nome e sobrenome" {...name}
-            autoComplete="off"
-          />
-          <Input
-            type="text"
-            id="cpf"
-            label="*CPF" {...cpf}
-            autoComplete="off"
-            placeholder="000.000.000-00"
-            mask={[/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/]}
-          />
-          <Input
-            type="text"
-            id="cnpj"
-            label="*CNPJ" {...cnpj}
-            autoComplete="off"
-            placeholder="00.000.000/0000-00"
-            mask={[/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/]}
-          />
-          <Input
-            type="text"
-            id="email"
-            label="*E-mail"
-            {...email}
-            autoComplete="off" />
+        <FormWrapper>
+          <form onSubmit={handleSubmit}>
+            <Input
+              type="text"
+              id="name"
+              label="*Nome e sobrenome" {...name}
+              autoComplete="off"
+            />
+            <Input
+              type="text"
+              id="cpf"
+              label="*CPF" {...cpf}
+              autoComplete="off"
+              placeholder="000.000.000-00"
+              mask={[/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/]}
+            />
+            <Input
+              type="text"
+              id="cnpj"
+              label="*CNPJ" {...cnpj}
+              autoComplete="off"
+              placeholder="00.000.000/0000-00"
+              mask={[/\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/]}
+            />
+            <Input
+              type="text"
+              id="email"
+              label="*E-mail"
+              {...email}
+              autoComplete="off" />
 
-          <Input
-            type="text"
-            id="telephone"
-            label="*Telefone"
-            {...telephone}
-            autoComplete="off"
-            placeholder="(00) 90000-0000"
-            mask={['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-          />
+            <Input
+              type="text"
+              id="telephone"
+              label="*Telefone"
+              {...telephone}
+              autoComplete="off"
+              placeholder="(00) 90000-0000"
+              mask={['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+            />
 
-          <Input
-            type="text"
-            id="endereco"
-            label="*Endereço"
-            {...endereco}
-            autoComplete="off"
-          />
+            <Input
+              type="text"
+              id="endereco"
+              label="*Endereço"
+              {...endereco}
+              autoComplete="off"
+            />
 
-          <FileWrapper>
-            <div>
-              <FileLabel
-                htmlFor="img"
-                style={{
-                  backgroundImage: `url(${img.preview ? img.preview : selfieIcon})`,
-                  backgroundSize: `${img.preview ? 'contain' : '30px'}`,
-                  backgroundColor: `${img.preview ? '#1a1a1a' : '#FFF'}`
-                }}
-              >
-                Enviar Selfie
-              </FileLabel>
-              <input type="file" id="img" name="img" onChange={handleImgChange} />
-            </div>
+            <FileWrapper>
+              <div>
+                <FileLabel
+                  htmlFor="img"
+                  style={{
+                    backgroundImage: `url(${img.preview ? img.preview : selfieIcon})`,
+                    backgroundSize: `${img.preview ? 'contain' : '30px'}`,
+                    backgroundColor: `${img.preview ? '#1a1a1a' : '#FFF'}`
+                  }}
+                >
+                  Enviar Selfie
+                </FileLabel>
+                <input type="file" id="img" name="img" onChange={handleImgChange} />
+              </div>
 
-            <Error>{fileError}</Error>
-            <p>
-              <RiErrorWarningFill size="25" />
-              <span>Por favor, selfie sem óculos ou máscara.</span>
-            </p>
+              <Error>{fileError}</Error>
+              <p>
+                <RiErrorWarningFill size="25" />
+                <span>Por favor, selfie sem óculos ou máscara.</span>
+              </p>
 
-          </FileWrapper>
+            </FileWrapper>
 
-          {error && <Error className="formError">{ error } Gostaria de <Link to="/consulta">consultar</Link> seu cadastro?</Error> }
+            {error && <Error className="formError">{ error } Gostaria de <Link to="/consulta">consultar</Link> seu cadastro?</Error> }
 
-          { loading && (
-            <Button buttonType="secondary" tagName="button" type="submit" loading={ loading }>Enviando...</Button>
-          )}
+            { loading && (
+              <Button buttonType="secondary" tagName="button" type="submit" loading={ loading }>Enviando...</Button>
+            )}
 
-          { !loading && !loadingFaceDetection && (
-            <Button buttonType="secondary" tagName="button" type="submit">Quero entregar amor!</Button>
-          ) }
+            { !loading && !loadingFaceDetection && (
+              <Button buttonType="secondary" tagName="button" type="submit">Quero entregar amor!</Button>
+            ) }
 
-          { loadingFaceDetection && (
-            <Button buttonType="secondary" tagName="button" type="submit" loading={ loadingFaceDetection }>Analisando selfie...</Button>
-          )}
-        </form>
-      </FormWrapper>
+            { loadingFaceDetection && (
+              <Button buttonType="secondary" tagName="button" type="submit" loading={ loadingFaceDetection }>Analisando selfie...</Button>
+            )}
+          </form>
+        </FormWrapper>
+      </main>
     </Container>
   )
 }

@@ -62,51 +62,53 @@ const Query: React.FC = () => {
         <Header />
         <Head title="Consulta |" content="Já realizou seu cadastro para fazer parte da equipe? Consulte o andamento do seu cadastro." />
 
-        <Message className="top_animation successful_message">
-          { data.status === 'pendente' && (
-            <>
-              <h1>Olá, { data.name }</h1>
-              <div>
-                <p className="status_wrapper">O seu status está <span className="status">pendente</span>.</p>
-                <p>Enviaremos um e-mail para { data.email } assim que atualizarmos. Obrigado por consultar 💜</p>
-              </div>
-            </>
-          )}
+        <main>
+          <Message className="top_animation successful_message">
+            { data.status === 'pendente' && (
+              <>
+                <h1>Olá, { data.name }</h1>
+                <div>
+                  <p className="status_wrapper">O seu status está <span className="status">pendente</span>.</p>
+                  <p>Enviaremos um e-mail para { data.email } assim que atualizarmos. Obrigado por consultar 💜</p>
+                </div>
+              </>
+            )}
 
-          { data.status === 'aprovado' && (
-            <>
-              <h1>Obaa!</h1>
-              <div>
-                <p className="status_wrapper">O seu cadastro foi <span className="status">aprovado</span>, { data.name } 💜</p>
-                <p>Estamos extremamente ansiosos para trabalhar contigo. Vamos entregar felicidade!!</p>
-              </div>
-            </>
-          )}
+            { data.status === 'aprovado' && (
+              <>
+                <h1>Obaa!</h1>
+                <div>
+                  <p className="status_wrapper">O seu cadastro foi <span className="status">aprovado</span>, { data.name } 💜</p>
+                  <p>Estamos extremamente ansiosos para trabalhar contigo. Vamos entregar felicidade!!</p>
+                </div>
+              </>
+            )}
 
-          { data.status === 'reprovado' && data.redo_test && (
-            <>
-              <h1>Olá, { data.name }</h1>
-              <div>
-                <p className="status_wrapper">Infelizmente o seu cadastro foi <br/><span className="status">recusado</span> ):</p>
-                <p>Por favor, não desanime. Você já pode realizar outro cadastro 💜</p>
-              </div>
-            </>
-          )}
+            { data.status === 'reprovado' && data.redo_test && (
+              <>
+                <h1>Olá, { data.name }</h1>
+                <div>
+                  <p className="status_wrapper">Infelizmente o seu cadastro foi <br/><span className="status">recusado</span> ):</p>
+                  <p>Por favor, não desanime. Você já pode realizar outro cadastro 💜</p>
+                </div>
+              </>
+            )}
 
-          { data.status === 'reprovado' && !data.redo_test && (
-            <>
-              <h1>Olá, { data.name }</h1>
-              <div>
-                <p className="status_wrapper">Infelizmente o seu cadastro foi <br/><span className="status">recusado</span> ):</p>
-                <p>
-                  Por favor, não desanime. Você poderá se cadastrar novamente em { getMinutesLeft } { getMinutesLeft === 1 ? 'minuto' : 'minutos' } 
-                💜</p>
-              </div>
-            </>
-          )}
-        </Message>
+            { data.status === 'reprovado' && !data.redo_test && (
+              <>
+                <h1>Olá, { data.name }</h1>
+                <div>
+                  <p className="status_wrapper">Infelizmente o seu cadastro foi <br/><span className="status">recusado</span> ):</p>
+                  <p>
+                    Por favor, não desanime. Você poderá se cadastrar novamente em { getMinutesLeft } { getMinutesLeft === 1 ? 'minuto' : 'minutos' } 
+                  💜</p>
+                </div>
+              </>
+            )}
+          </Message>
 
-        <DeliveryBoy />
+          <DeliveryBoy />
+        </main>
       </Container>
     )
   } else return (
@@ -114,32 +116,34 @@ const Query: React.FC = () => {
       <Header />
       <Head title="Consulta |" content="Já realizou seu cadastro para fazer parte da equipe? Consulte o andamento do seu cadastro." />
 
-      <Message className="top_animation">
-        <h1>Consulte seu cadastro</h1>
-        <p>Costumamos atualizar o status em até 24 horas!  💜</p>
-      </Message>
+      <main>
+        <Message className="top_animation">
+          <h1>Consulte seu cadastro</h1>
+          <p>Costumamos atualizar o status em até 24 horas!  💜</p>
+        </Message>
 
-      <FormWrapper>
-        <form onSubmit={ handleSubmit }>
-          <Input 
-            mask={[/\d/, /\d/, /\d/, '.' , /\d/, /\d/, /\d/, '.' , /\d/, /\d/, /\d/, '-' , /\d/, /\d/]}
-            type="text" 
-            id="cpf" 
-            label="*CPF"
-            autoComplete="off" 
-            placeholder="000.000.000-00" 
-            { ...cpf } 
-          />
+        <FormWrapper>
+          <form onSubmit={ handleSubmit }>
+            <Input 
+              mask={[/\d/, /\d/, /\d/, '.' , /\d/, /\d/, /\d/, '.' , /\d/, /\d/, /\d/, '-' , /\d/, /\d/]}
+              type="text" 
+              id="cpf" 
+              label="*CPF"
+              autoComplete="off" 
+              placeholder="000.000.000-00" 
+              { ...cpf } 
+            />
 
-          {error && <Error className="formError">{ error }</Error> }
+            {error && <Error className="formError">{ error }</Error> }
 
-          { loading ? (
-            <Button buttonType="secondary" tagName="button" type="submit" loading={ loading }>Enviando...</Button>
-          ) : (
-            <Button buttonType="secondary" tagName="button" type="submit">Consultar</Button>
-          )}
-        </form>
-      </FormWrapper>
+            { loading ? (
+              <Button buttonType="secondary" tagName="button" type="submit" loading={ loading }>Enviando...</Button>
+            ) : (
+              <Button buttonType="secondary" tagName="button" type="submit">Consultar</Button>
+            )}
+          </form>
+        </FormWrapper>
+      </main>
     </Container>
   );
 }
